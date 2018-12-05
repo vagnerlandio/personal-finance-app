@@ -3,6 +3,7 @@ var sass = require('gulp-sass');
 var rename = require('gulp-rename');
 var pug = require('gulp-pug');
 var concat = require('gulp-concat');
+var merge = require('merge-stream');
 /*
  * Variables
  */
@@ -27,6 +28,13 @@ gulp.task('css-dev', function(){
     .pipe(gulp.dest(cssDest));
 });
 
+gulp.task('vendor', function(){
+  var js = gulp.src('./src/vendor/js/*.js')
+    .pipe(gulp.dest('dist/js'));
+  var css = gulp.src('./src/vendor/css/*.css')
+    .pipe(gulp.dest('dist/css'));
+});
+
 // Task 'html' - Run with command 'gulp html'
 gulp.task('html', function(){
   return gulp.src('src/views/*.pug')
@@ -44,9 +52,9 @@ gulp.task('js', function(){
 // Task 'watch' - Run with command 'gulp watch'
 gulp.task('watch', function(){
   // Add 'css-dev' for non-minified css
-  gulp.watch('./src/**/*.*', ['html', 'css', 'js']);
+  gulp.watch('./src/**/*.*', ['html', 'css', 'js', 'vendor']);
 });
 
 // Default task - Run with command 'gulp'
-// Add 'css-dev' for non-minified css
-gulp.task('default', ['html', 'css', 'js', 'watch']);
+// Add 'css-dev' for non-minified assets
+gulp.task('default', ['html', 'css', 'js', 'vendor', 'watch']);
