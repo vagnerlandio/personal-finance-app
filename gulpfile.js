@@ -37,7 +37,7 @@ gulp.task('vendor', function(){
 
 // Task 'html' - Run with command 'gulp html'
 gulp.task('html', function(){
-  return gulp.src('src/views/*.pug')
+  return gulp.src('src/views/**/[^_]*.pug')
     .pipe(pug())
     .pipe(gulp.dest('dist'));
 });
