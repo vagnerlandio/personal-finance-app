@@ -42,6 +42,12 @@ gulp.task('images', function(){
     .pipe(gulp.dest('dist/img'));
 });
 
+// Task 'manifest' - Run with command 'gulp manifest'
+gulp.task('manifest', function(){
+  return gulp.src('./src/manifest.json')
+    .pipe(gulp.dest('dist'));
+});
+
 // Task 'html' - Run with command 'gulp html'
 gulp.task('html', function(){
   return gulp.src('src/views/**/[^_]*.pug')
@@ -59,9 +65,9 @@ gulp.task('js', function(){
 // Task 'watch' - Run with command 'gulp watch'
 gulp.task('watch', function(){
   // Add 'css-dev' for non-minified css
-  gulp.watch('./src/**/*.*', ['html', 'css', 'js', 'vendor', 'images']);
+  gulp.watch('./src/**/*.*', ['html', 'css', 'js', 'vendor', 'images', 'manifest']);
 });
 
 // Default task - Run with command 'gulp'
 // Add 'css-dev' for non-minified assets
-gulp.task('default', ['html', 'css', 'js', 'vendor', 'images', 'watch']);
+gulp.task('default', ['html', 'css', 'js', 'vendor', 'images', 'manifest', 'watch']);
