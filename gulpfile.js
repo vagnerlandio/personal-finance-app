@@ -28,11 +28,18 @@ gulp.task('css-dev', function(){
     .pipe(gulp.dest(cssDest));
 });
 
+// Task 'vendor' - Run with command 'gulp vendor'
 gulp.task('vendor', function(){
   var js = gulp.src('./src/vendor/js/*.js')
     .pipe(gulp.dest('dist/js'));
   var css = gulp.src('./src/vendor/css/*.css')
     .pipe(gulp.dest('dist/css'));
+});
+
+// Task 'images' - Run with command 'gulp images'
+gulp.task('images', function(){
+  return gulp.src('./src/images/*')
+    .pipe(gulp.dest('dist/img'));
 });
 
 // Task 'html' - Run with command 'gulp html'
@@ -52,9 +59,9 @@ gulp.task('js', function(){
 // Task 'watch' - Run with command 'gulp watch'
 gulp.task('watch', function(){
   // Add 'css-dev' for non-minified css
-  gulp.watch('./src/**/*.*', ['html', 'css', 'js', 'vendor']);
+  gulp.watch('./src/**/*.*', ['html', 'css', 'js', 'vendor', 'images']);
 });
 
 // Default task - Run with command 'gulp'
 // Add 'css-dev' for non-minified assets
-gulp.task('default', ['html', 'css', 'js', 'vendor', 'watch']);
+gulp.task('default', ['html', 'css', 'js', 'vendor', 'images', 'watch']);
