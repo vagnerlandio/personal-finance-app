@@ -71,3 +71,5 @@ gulp.task('watch', function(){
 // Default task - Run with command 'gulp'
 // Add 'css-dev' for non-minified assets
 gulp.task('default', ['html', 'css', 'js', 'vendor', 'images', 'manifest', 'watch']);
+
+gulp.task('build', ['html', 'css', 'js', 'vendor', 'images', 'manifest']);
