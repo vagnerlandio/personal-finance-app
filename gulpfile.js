@@ -42,9 +42,9 @@ gulp.task('images', function(){
     .pipe(gulp.dest('dist/img'));
 });
 
-// Task 'manifest' - Run with command 'gulp manifest'
-gulp.task('manifest', function(){
-  return gulp.src('./src/manifest.json')
+// Task 'root-files' - Run with command 'gulp root-files'
+gulp.task('root-files', function(){
+  return gulp.src('./src/root-files/*.*')
     .pipe(gulp.dest('dist'));
 });
 
@@ -65,11 +65,11 @@ gulp.task('js', function(){
 // Task 'watch' - Run with command 'gulp watch'
 gulp.task('watch', function(){
   // Add 'css-dev' for non-minified css
-  gulp.watch('./src/**/*.*', ['html', 'css', 'js', 'vendor', 'images', 'manifest']);
+  gulp.watch('./src/**/*.*', ['html', 'css', 'js', 'vendor', 'images', 'root-files']);
 });
 
 // Default task - Run with command 'gulp'
 // Add 'css-dev' for non-minified assets
-gulp.task('default', ['html', 'css', 'js', 'vendor', 'images', 'manifest', 'watch']);
+gulp.task('default', ['html', 'css', 'js', 'vendor', 'images', 'root-files', 'watch']);
 
-gulp.task('build', ['html', 'css', 'js', 'vendor', 'images', 'manifest']);
+gulp.task('build', ['html', 'css', 'js', 'vendor', 'images', 'root-files']);
