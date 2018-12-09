@@ -57,7 +57,7 @@ gulp.task('html', function(){
 
 // Task 'js' - Run with command 'gulp js'
 gulp.task('js', function(){
-  return gulp.src('./src/scripts/script.js')
+  return gulp.src('./src/scripts/*.js')
     // .pipe(concat('script.min.js'))
     .pipe(gulp.dest('./dist/js'));
 });
