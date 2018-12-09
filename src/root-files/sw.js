@@ -16,7 +16,21 @@ self.addEventListener('install', e => {
         '/js/script.min.js',
         '/img/icon-32.png',
         '/img/icon-192.png',
-        '/manifest.json'
+        '/manifest.json',
+        '/js/about.js',
+        '/js/script.js',
+        '/js/categories.js',
+        '/js/accounts.js',
+        '/js/index.js',
+        '/js/settings.js',
+        '/js/transactions.js',
+        '/css/about.css',
+        '/css/script.css',
+        '/css/categories.css',
+        '/css/accounts.css',
+        '/css/index.css',
+        '/css/settings.css',
+        '/css/transactions.css'
         /*
           DEAR READER,
           ADD A LIST OF YOUR ASSETS THAT
