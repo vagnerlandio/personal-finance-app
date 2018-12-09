@@ -28,7 +28,14 @@ self.addEventListener('install', e => {
         '/css/accounts.css',
         '/css/index.css',
         '/css/settings.css',
-        '/css/transactions.css'
+        '/css/transactions.css',
+        '/about.html',
+        '/categories.html',
+        '/accounts.html',
+        '/index.html',
+        '/settings.html',
+        '/transactions.html',
+        '/index.html?launcher=true'
         /*
           DEAR READER,
           ADD A LIST OF YOUR ASSETS THAT
