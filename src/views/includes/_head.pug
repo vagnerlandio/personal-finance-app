@@ -6,7 +6,9 @@ head
   //- Import materialize.css
   link(type='text/css' rel='stylesheet' href='css/materialize.min.css'  media='screen,projection')
   //- Import custom styles
-  link(type='text/css' rel='stylesheet' href='css/style.min.css')
+  link(type='text/css' rel='stylesheet' href='css/style.css')
+  // Custom page style
+  block page_style
   //- Import manifet
   link(rel='manifest' href='manifest.json')
   //- Import favicon
@@ -15,5 +17,4 @@ head
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   meta(name='theme-color' content='#40c4ff')
   meta(name='description' content='A personal finance web application that works even when you are without internet access')
-  title Oinc - Personal Finance
-    
+  block title

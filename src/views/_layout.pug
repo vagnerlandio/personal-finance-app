@@ -1,0 +1,18 @@
+- var titleApp = "Oinc - Personal Finance";
+block variables
+  
+mixin head_title(name)
+  title= name + " | " + titleApp
+  
+mixin add_style(href)
+  link(type='text/css' rel='stylesheet' href=href)
+  
+
+doctype html
+html(lang='en')
+  include includes/_head.pug
+  body
+    .container
+      block content
+    include includes/_footer.pug
+    include includes/_scripts.pug

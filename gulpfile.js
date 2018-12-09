@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var rename = require('gulp-rename');
+// var rename = require('gulp-rename');
 var pug = require('gulp-pug');
 var concat = require('gulp-concat');
 var merge = require('merge-stream');
@@ -8,7 +8,7 @@ var merge = require('merge-stream');
  * Variables
  */
 // Sass source
-var scssFiles = './src/styles/style.scss';
+var scssFiles = './src/styles/*.*';
 var cssDest = './dist/css';
 var sassDevOptions = { outputStyle: 'expanded' }
 var sassProdOptions = { outputStyle: 'compressed' }
@@ -17,7 +17,7 @@ var sassProdOptions = { outputStyle: 'compressed' }
 gulp.task('css', function(){
   return gulp.src(scssFiles)
     .pipe(sass(sassProdOptions).on('error', sass.logError))
-    .pipe(rename('style.min.css'))
+    // .pipe(rename('style.min.css'))
     .pipe(gulp.dest(cssDest));
 });
 

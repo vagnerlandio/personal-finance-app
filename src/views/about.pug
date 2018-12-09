@@ -1,0 +1,10 @@
+extends _layout.pug
+
+block variables
+  - var title = "About";
+block page_style
+  +add_style('css/about.css')
+block title
+  +head_title(title)
+block content
+  h1= title
