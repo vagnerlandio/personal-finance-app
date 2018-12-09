@@ -12,7 +12,9 @@ doctype html
 html(lang='en')
   include includes/_head.pug
   body
-    .container
+    include includes/_sidenav.pug
+    main.container
       block content
-    include includes/_footer.pug
+    footer
+      include includes/_footer.pug
     include includes/_scripts.pug
