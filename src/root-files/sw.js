@@ -10,10 +10,10 @@ self.addEventListener('install', e => {
       return cache.addAll([
         '/',
         '/css/materialize.min.css',
-        '/css/style.min.css',
+        '/css/style.css',
         '/js/materialize.min.js',
         '/js/jquery-3.3.1.min.js',
-        '/js/script.min.js',
+        '/js/script.js',
         '/img/icon-32.png',
         '/img/icon-192.png',
         '/manifest.json',
