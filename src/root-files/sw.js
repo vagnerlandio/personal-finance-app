@@ -14,6 +14,7 @@ self.addEventListener('install', e => {
         '/js/materialize.min.js',
         '/js/jquery-3.3.1.min.js',
         '/js/script.js',
+        '/js/idbstore.js',
         '/img/icon-32.png',
         '/img/icon-192.png',
         '/manifest.json',
