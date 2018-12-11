@@ -1,3 +1,3 @@
 $(document).ready(function(){
-  $('.overview').addClass('active');
+  $('.about').addClass('active');
 });
