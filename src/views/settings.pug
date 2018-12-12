@@ -10,3 +10,18 @@ block nav_title
   a(href="#!" class="brand-logo center")= title
 block page_script
   +add_script('js/settings.js')
+block content
+  h4 Application
+  ul.collapsible
+    li
+      .collapsible-header
+        | Import default categories
+      .collapsible-body
+        a.waves-effect.waves-light.btn#import-categories Import Categories
+    li
+      .collapsible-header
+        | Clear all data
+      .collapsible-body
+        a.waves-effect.waves-light.btn#clear-data Clear Data
+      
+  

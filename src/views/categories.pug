@@ -10,3 +10,17 @@ block nav_title
   a(href="#!" class="brand-logo center")= title
 block page_script
   +add_script('js/categories.js')
+block content
+  ul#tabs-swipe-demo.tabs
+    li.tab.col.s3
+      a.active(href='#expenses-page') Expenses
+    li.tab.col.s3
+      a(href='#incomes-page') Incomes
+    li.tab.col.s3
+      a(href='#accounts-page') Accounts
+  #expenses-page.col.s12
+    ul.collection
+  #incomes-page.col.s12
+    ul.collection
+  #accounts-page.col.s12
+    ul.collection

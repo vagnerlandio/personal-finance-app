@@ -1,0 +1,31 @@
+{
+  "expenses":[
+    "Others",
+    "Car",
+    "Clothing",
+    "Food",
+    "Health",
+    "Home",
+    "Leisure",
+    "Payments",
+    "School",
+    "Services",
+    "Transport"
+  ],
+  "incomes":[
+    "Others",
+    "Benefits",
+    "Commission",
+    "Payments",
+    "Recurring",
+    "Sales",
+    "Savings",
+    "Services"
+  ],
+  "accounts":[
+    "Others",
+    "Checking Account",
+    "Savings Account",
+    "Wallet"
+  ]
+}
