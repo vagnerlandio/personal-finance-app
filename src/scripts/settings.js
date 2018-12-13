@@ -1,6 +1,7 @@
 $(document).ready(function(){
   $('.settings').addClass('active');
   $('.collapsible').collapsible();
+  $('.dropdown-trigger').dropdown();
 });
 
 $("#clear-data").click(function() {
