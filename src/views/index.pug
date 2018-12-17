@@ -13,3 +13,20 @@ block page_script
 block floating
   include includes/_new_entries.pug
   include includes/_modal_entries.pug
+block content
+  .container
+    .row
+      .col.s12
+        h5.center.grey-text Total Balance
+      .col.s12
+        h3.center.total-balance-value $8,395.02
+    .row
+      .col.s4
+        span.badge-in.green.white-text IN
+        span.green-text#income $10,000.00
+      .col.s4
+        span.badge-out.red.white-text OUT
+        span.red-text#expense $5,000.00
+      .col.s4
+        span.badge-sav.blue.white-text SAV
+        span.blue-text#foreseen $5,000.00

@@ -33,6 +33,18 @@ nav {
   }
 }
 
+.red-text {
+  color: $red-color !important;
+}
+.green-text {
+  color: $green-color !important;
+}
+.yellow-text {
+  color: $yellow-color !important;
+}
+.blue-text {
+  color: $blue-color !important;
+}
 .red {
   background-color: $red-color !important;
 }
@@ -44,4 +56,17 @@ nav {
 }
 .blue {
   background-color: $blue-color !important;
+}
+
+.badge-in, .badge-out, .badge-sav {
+  min-width: 3rem;
+  padding: 0 6px;
+  margin: 0 7px;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 22px;
+  height: 22px;
+  float: left;
+  box-sizing: border-box;
+  border-radius: 3px;
 }
