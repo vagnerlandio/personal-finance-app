@@ -34,6 +34,7 @@ gulp.task('vendor', function(){
     .pipe(gulp.dest('dist/js'));
   var css = gulp.src('./src/vendor/css/*.css')
     .pipe(gulp.dest('dist/css'));
+  return merge(js, css);
 });
 
 // Task 'images' - Run with command 'gulp images'
