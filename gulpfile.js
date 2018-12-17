@@ -19,7 +19,7 @@ gulp.task('serve', function () {
         }
     });
 
-    gulp.watch("*.*").on("change", reload);
+    gulp.watch(['*.html', 'js/*.js', 'css/*.css']).on("change", reload);
 });
 
 // Task 'pages-sass' - Run with command 'gulp pages-sass'
