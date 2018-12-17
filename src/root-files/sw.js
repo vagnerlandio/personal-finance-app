@@ -1,6 +1,6 @@
 // we'll version our cache (and learn how to delete caches in
 // some other post)
-const cacheVersion = 4;
+const cacheVersion = 5;
 
 self.addEventListener('install', e => {
   // once the SW is installed, go ahead and fetch the resources
