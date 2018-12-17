@@ -1,5 +1,10 @@
 /* app */
-$primary-color: #27beac;
+$primary-color: white;
+$secondary-color: black;
+$red-color: #f45531;
+$green-color: #1fc08f;
+$yellow-color: #ffc044;
+$blue-color: #0c92d2;
 @import "materialize.scss";
 
 header, main, footer {
@@ -20,4 +25,23 @@ header, main, footer {
 
 .modal.bottom-sheet{
     max-height: 90%;
+}
+
+nav {
+  .sidenav-trigger, .brand-logo {
+    color: $secondary-color;
+  }
+}
+
+.red {
+  background-color: $red-color !important;
+}
+.green {
+  background-color: $green-color !important;
+}
+.yellow {
+  background-color: $yellow-color !important;
+}
+.blue {
+  background-color: $blue-color !important;
 }
