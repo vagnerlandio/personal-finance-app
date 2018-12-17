@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/vagnerlandio/personal-finance-app#readme",
   "devDependencies": {
+    "browser-sync": "^2.26.3",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-pug": "^4.0.1",
