@@ -1,48 +1,16 @@
 // we'll version our cache (and learn how to delete caches in
 // some other post)
-const cacheName = 'v5::static';
+const cacheVersion = 2;
 
 self.addEventListener('install', e => {
   // once the SW is installed, go ahead and fetch the resources
   // to make this work offline
   e.waitUntil(
-    caches.open(cacheName).then(cache => {
-      return cache.addAll([
-        '/',
-        '/css/style.css',
-        '/js/materialize.min.js',
-        '/js/jquery-3.3.1.min.js',
-        '/js/script.js',
-        '/js/idbstore.js',
-        '/img/icon-32.png',
-        '/img/icon-192.png',
-        '/manifest.json',
-        '/js/about.js',
-        '/js/categories.js',
-        '/js/accounts.js',
-        '/js/index.js',
-        '/js/settings.js',
-        '/js/transactions.js',
-        '/css/about.css',
-        '/css/categories.css',
-        '/css/accounts.css',
-        '/css/index.css',
-        '/css/settings.css',
-        '/css/transactions.css',
-        '/about.html',
-        '/categories.html',
-        '/accounts.html',
-        '/index.html',
-        '/settings.html',
-        '/transactions.html',
-        '/index.html?launcher=true'
-        /*
-          DEAR READER,
-          ADD A LIST OF YOUR ASSETS THAT
-          YOU WANT TO WORK WHEN OFFLINE
-          TO THIS ARRAY OF URLS
-        */
-      ]).then(() => self.skipWaiting());
+    caches.open('static::v' + cacheVersion).then(cache => {
+      return cache.addAll(arquivos).then(function(){
+        caches.delete('static::v' + (cacheVersion - 1));
+        self.skipWaiting();
+      });
     })
   );
 });
@@ -52,10 +20,56 @@ self.addEventListener('install', e => {
 self.addEventListener('fetch', event => {
   event.respondWith(
     // ensure we check the *right* cache to match against
-    caches.open(cacheName).then(cache => {
+    caches.open('static::v' + cacheVersion).then(cache => {
+
       return cache.match(event.request).then(res => {
         return res || fetch(event.request)
       });
     })
   );
 });
+
+let arquivos = [
+  '/',
+  // IAGES
+  '/img/icon-32.png',
+  '/img/icon-192.png',
+  '/img/icon-512.png',
+  // MANIFEST
+  '/manifest.json',
+  // JAVASCRIPT
+  '/js/about.js',
+  '/js/accounts.js',
+  '/js/categories.js',
+  '/js/idbstore.js',
+  '/js/index.js',
+  '/js/jquery-3.3.1.min.js',
+  '/js/materialize.min.js',
+  '/js/script.js',
+  '/js/settings.js',
+  '/js/transactions.js',
+  // CSS
+  '/css/about.css',
+  '/css/accounts.css',
+  '/css/categories.css',
+  '/css/index.css',
+  '/css/settings.css',
+  '/css/style.min.css',
+  '/css/transactions.css',
+  // HTML
+  '/about.html',
+  '/accounts.html',
+  '/categories.html',
+  '/index.html',
+  '/settings.html',
+  '/transactions.html',
+  '/index.html?launcher=true',
+  // JSONS
+  '/default_categories.json'
+  /*
+    DEAR READER,
+    ADD A LIST OF YOUR ASSETS THAT
+    YOU WANT TO WORK WHEN OFFLINE
+    TO THIS ARRAY OF URLS
+  */
+]
