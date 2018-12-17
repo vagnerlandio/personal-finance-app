@@ -4,27 +4,43 @@ var sass = require('gulp-sass');
 var pug = require('gulp-pug');
 var concat = require('gulp-concat');
 var merge = require('merge-stream');
+var browserSync = require('browser-sync').create();
+var reload      = browserSync.reload;
+sass.compiler = require('node-sass');
 /*
  * Variables
  */
-// Sass source
-var scssFiles = './src/styles/*.*';
 var cssDest = './dist/css';
-var sassDevOptions = { outputStyle: 'expanded' }
-var sassProdOptions = { outputStyle: 'compressed' }
 
-// Task 'css' - Run with command 'gulp css'
-gulp.task('css', function(){
-  return gulp.src(scssFiles)
-    .pipe(sass(sassProdOptions).on('error', sass.logError))
-    // .pipe(rename('style.min.css'))
+gulp.task('serve', function () {
+    browserSync.init({
+        server: {
+            baseDir: "./dist"
+        }
+    });
+
+    gulp.watch("*.*").on("change", reload);
+});
+
+// Task 'pages-sass' - Run with command 'gulp pages-sass'
+gulp.task('pages-sass', function(){
+  return gulp.src('./src/pages-sass/*.*')
+    .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+    .pipe(gulp.dest(cssDest));
+});
+
+// Task 'sass' - Run with command 'gulp sass'
+gulp.task('sass', function(){
+  return gulp.src('src/sass/style.scss')
+    .pipe(sass({ outputStyle: 'compressed' }))
+    .pipe(concat('style.min.css'))
     .pipe(gulp.dest(cssDest));
 });
 
 // Task 'css-dev' - Run with command 'gulp css-dev'
 gulp.task('css-dev', function(){
   return gulp.src(scssFiles)
-    .pipe(sass(sassDevOptions).on('error', sass.logError))
+    .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
     .pipe(gulp.dest(cssDest));
 });
 
@@ -66,11 +82,11 @@ gulp.task('js', function(){
 // Task 'watch' - Run with command 'gulp watch'
 gulp.task('watch', function(){
   // Add 'css-dev' for non-minified css
-  gulp.watch('./src/**/*.*', ['html', 'css', 'js', 'vendor', 'images', 'root-files']);
+  gulp.watch('./src/**/*.*', ['html', 'sass', 'pages-sass', 'js', 'vendor', 'images', 'root-files']).on('change', browserSync.reload);
 });
 
 // Default task - Run with command 'gulp'
 // Add 'css-dev' for non-minified assets
-gulp.task('default', ['html', 'css', 'js', 'vendor', 'images', 'root-files', 'watch']);
+gulp.task('default', ['html', 'sass', 'pages-sass', 'js', 'vendor', 'images', 'root-files', 'watch', 'serve']);
 
-gulp.task('build', ['html', 'css', 'js', 'vendor', 'images', 'root-files']);
+gulp.task('build', ['html', 'sass', 'pages-sass', 'js', 'vendor', 'images', 'root-files']);

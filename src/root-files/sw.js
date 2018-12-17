@@ -1,6 +1,6 @@
 // we'll version our cache (and learn how to delete caches in
 // some other post)
-const cacheName = 'v1::static';
+const cacheName = 'v5::static';
 
 self.addEventListener('install', e => {
   // once the SW is installed, go ahead and fetch the resources
@@ -9,7 +9,6 @@ self.addEventListener('install', e => {
     caches.open(cacheName).then(cache => {
       return cache.addAll([
         '/',
-        '/css/materialize.min.css',
         '/css/style.css',
         '/js/materialize.min.js',
         '/js/jquery-3.3.1.min.js',
