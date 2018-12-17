@@ -1,29 +1,29 @@
-body
-  nav
-    .nav-wrapper
-      block nav_title
-      a.sidenav-trigger.black-text(href="#" data-target="slide-out")
-        i.material-icons.black-text menu
-  ul#slide-out.sidenav.sidenav-fixed
-    li.overview
-      a.waves-effect.black-text(href="/") Overview
-        i.material-icons.black-text dashboard
-    li.accounts
-      a.waves-effect.black-text(href="accounts.html") Accounts
-        i.material-icons.black-text account_balance_wallet
-    li.transactions
-      a.waves-effect.black-text(href="transactions.html") Transactions
-        i.material-icons.black-text money
-    li.divider
-    li
-      a.subheader Manager
-    li.categories
-      a.waves-effect.black-text(href="categories.html") Categories
-        i.material-icons.black-text label
-    li.divider
-    li.settings
-      a.waves-effect.black-text(href="settings.html") Settings
-        i.material-icons.black-text settings
-    li.about
-      a.waves-effect.black-text(href="about.html") About
-        i.material-icons.black-text info
+nav.nav-extended
+  .nav-wrapper
+    block nav_title
+    a.sidenav-trigger.black-text(href="#" data-target="slide-out")
+      i.material-icons.black-text menu
+  block nav_content
+ul#slide-out.sidenav.sidenav-fixed
+  li.overview
+    a.waves-effect.black-text(href="/") Overview
+      i.material-icons.black-text dashboard
+  li.accounts
+    a.waves-effect.black-text(href="accounts.html") Accounts
+      i.material-icons.black-text account_balance_wallet
+  li.transactions
+    a.waves-effect.black-text(href="transactions.html") Transactions
+      i.material-icons.black-text money
+  li.divider
+  li
+    a.subheader Manager
+  li.categories
+    a.waves-effect.black-text(href="categories.html") Categories
+      i.material-icons.black-text label
+  li.divider
+  li.settings
+    a.waves-effect.black-text(href="settings.html") Settings
+      i.material-icons.black-text settings
+  li.about
+    a.waves-effect.black-text(href="about.html") About
+      i.material-icons.black-text info

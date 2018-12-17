@@ -12,7 +12,7 @@ header, main, footer {
 }
 
 @media only screen and (min-width : 993px) {
-  .brand-logo {
+  .nav-extended {
     padding-left: 300px !important;
   }
 }
@@ -69,4 +69,7 @@ nav {
   float: left;
   box-sizing: border-box;
   border-radius: 3px;
+}
+.tabs .indicator {
+  background-color: #757575;
 }

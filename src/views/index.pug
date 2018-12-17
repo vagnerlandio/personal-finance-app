@@ -8,6 +8,16 @@ block title
   +head_title(title)
 block nav_title
   a(href="#!" class="brand-logo center")= title
+block nav_content
+  .nav-content
+    .col
+      a.btn-flat.btn-large.waves-effect.waves-light.black-text#prev-month
+        i.material-icons arrow_back
+    .col
+      h5.grey-text#current-month Dec
+    .col
+      a.btn-flat.btn-large.waves-effect.waves-light.black-text#next-month
+        i.material-icons arrow_forward
 block page_script
   +add_script('js/index.js')
 block floating
