@@ -6,6 +6,14 @@ if ('serviceWorker' in navigator) {
 
 $(document).ready(function(){
   $('.sidenav').sidenav();
+  // Format currencies
+  $('.currency-input').maskMoney({
+    prefix:'$ ',
+    allowNegative: true,
+    thousands:',',
+    decimal:'.',
+    affixesStay: false
+  });
 });
 
 // Create database

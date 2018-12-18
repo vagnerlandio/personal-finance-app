@@ -1,6 +1,6 @@
 // we'll version our cache (and learn how to delete caches in
 // some other post)
-const cacheVersion = 5;
+const cacheVersion = 6;
 
 self.addEventListener('install', e => {
   // once the SW is installed, go ahead and fetch the resources
@@ -44,6 +44,7 @@ let arquivos = [
   '/js/idbstore.js',
   '/js/index.js',
   '/js/jquery-3.3.1.min.js',
+  '/js/jquery.maskMoney.min.js',
   '/js/materialize.min.js',
   '/js/script.js',
   '/js/settings.js',

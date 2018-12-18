@@ -1,5 +1,7 @@
 $(document).ready(function() {
   $('.overview').addClass('active');
+  selectCategory();
+  $('select').formSelect();
   $('.fixed-action-btn').floatingActionButton({
     hoverEnabled: false
   });
@@ -61,4 +63,11 @@ function nextMonth() {
   }
   updateDate();
   $('main').fadeOut(150, () => $('main').fadeToggle(150));
+}
+
+function selectCategory() {
+  var accounts = JSON.parse(localStorage.getItem('accounts'));
+  $.each(accounts, function(index, value) {
+    $("#account-category").append(new Option(value, value.toLowerCase().split(" ").join("_")));
+  });
 }
