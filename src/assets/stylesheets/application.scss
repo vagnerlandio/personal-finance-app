@@ -73,3 +73,8 @@ nav {
 .tabs .indicator {
   background-color: #757575;
 }
+#prev-month, #next-month {
+  &:hover, &:focus {
+    color: white !important;
+  }
+}
