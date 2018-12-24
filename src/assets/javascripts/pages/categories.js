@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(() => {
   $('.categories').addClass('active');
   $('.tabs').tabs({swipeable: true});
   loadCategories();

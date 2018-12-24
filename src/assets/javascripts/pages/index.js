@@ -3,7 +3,7 @@ $(document).ready(function () {
   selectCategory();
   $('select').formSelect();
   $('.fixed-action-btn').floatingActionButton({
-    hoverEnabled: false;
+    hoverEnabled: false
   });
   $('.modal').modal();
   updateDate();

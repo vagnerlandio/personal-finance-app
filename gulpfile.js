@@ -62,7 +62,7 @@ gulp.task('del', () => {
 
 // Task 'images' - Run with command 'gulp images'
 gulp.task('images', () => {
-  gulp.src(imagesPath())
+  gulp.src(imagesPath('*.*'))
     .pipe(gulp.dest('dist/img'));
 });
 
@@ -85,7 +85,7 @@ gulp.task('scripts', () => {
 
 // Task 'resources' - Run with command 'gulp resources'
 gulp.task('resources', () => {
-  gulp.src(resourcesPath())
+  gulp.src(resourcesPath('*.*'))
     .pipe(gulp.dest('dist/res'));
 });
 

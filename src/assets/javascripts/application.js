@@ -1,5 +1,6 @@
-$(document).ready(function(){
+$(() => {
   $('.sidenav').sidenav();
+
   // Format currencies
   $('.currency-input').maskMoney({
     prefix: '$ ',
@@ -11,58 +12,58 @@ $(document).ready(function(){
 });
 
 // Create database
-var entries = new IDBStore({
-  dbVersion: 1,
-  storeName: 'entry',
-  keyPath: 'id',
-  autoIncrement: true,
-  onStoreReady: () => {
-    console.log('Entry ready!');
-  }
-});
+// var entries = new IDBStore({
+//   dbVersion: 1,
+//   storeName: 'entry',
+//   keyPath: 'id',
+//   autoIncrement: true,
+//   onStoreReady: () => {
+//     console.log('Entry ready!');
+//   }
+// });
 
 // CREATE
-entries.put({
-  description: 'Enel - Energia',
-  amount: 45.00,
-  idPaid: false
-  }, function(id){
-    console.log('Yeah, dude inserted! insertId is: ' + id);
-  }, function(error){
-    console.log('Oh noes, sth went wrong!', error);
-  }
-);
+// entries.put({
+//   description: 'Enel - Energia',
+//   amount: 45.00,
+//   idPaid: false
+//   }, function(id){
+//     console.log('Yeah, dude inserted! insertId is: ' + id);
+//   }, function(error){
+//     console.log('Oh noes, sth went wrong!', error);
+//   }
+// );
 
 // READ
-entries.get(1,
-  function(data){
-    console.log('here is our dude:', data);
-  }, function(error){
-  console.log('Oh noes, sth went wrong!', error);
-  }
-);
-
-// UPDATE
-entries.put({
-  id: 1,
-  description: 'Enel - Energia',
-  amount: 45.00,
-  idPaid: true
-  }, function(id){
-    console.log('Yeah, dude updated! id still is: ' + id);
-  }, function(error){
-    console.log('Oh noes, sth went wrong!', error);
-  }
-);
+// entries.get(1,
+//   function(data){
+//     console.log('here is our dude:', data);
+//   }, function(error){
+//   console.log('Oh noes, sth went wrong!', error);
+//   }
+// );
+//
+// // UPDATE
+// entries.put({
+//   id: 1,
+//   description: 'Enel - Energia',
+//   amount: 45.00,
+//   idPaid: true
+//   }, function(id){
+//     console.log('Yeah, dude updated! id still is: ' + id);
+//   }, function(error){
+//     console.log('Oh noes, sth went wrong!', error);
+//   }
+// );
 
 // DELETE
-entries.remove(3,
-  function(result){
-    if(result !== false){
-      console.log('deletion successful!');
-    }
-  },
-  function(error){
-    console.log('Oh noes, sth went wrong!', error);
-  }
-);
+// entries.remove(3,
+//   function(result){
+//     if(result !== false){
+//       console.log('deletion successful!');
+//     }
+//   },
+//   function(error){
+//     console.log('Oh noes, sth went wrong!', error);
+//   }
+// );

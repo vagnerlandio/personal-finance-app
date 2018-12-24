@@ -36,21 +36,18 @@ let arquivos = [
   '/img/icon-192.png',
   '/img/icon-512.png',
 
-  // MANIFEST
-  '/manifest.json',
-
   // JAVASCRIPT
   '/js/about.js',
   '/js/accounts.js',
   '/js/categories.js',
-  '/js/idbstore.js',
   '/js/index.js',
-  '/js/jquery-3.3.1.min.js',
-  '/js/jquery.maskMoney.min.js',
-  '/js/materialize.min.js',
-  '/js/script.js',
+  '/js/application.js',
   '/js/settings.js',
   '/js/transactions.js',
+  '/js/vendor/jquery-3.3.1.min.js',
+  '/js/vendor/jquery.maskMoney.min.js',
+  '/js/vendor/materialize.min.js',
+  '/js/vendor/IDBWrapper.js',
 
   // CSS
   '/css/about.css',
@@ -58,7 +55,7 @@ let arquivos = [
   '/css/categories.css',
   '/css/index.css',
   '/css/settings.css',
-  '/css/style.min.css',
+  '/css/application.css',
   '/css/transactions.css',
 
   // HTML
@@ -71,7 +68,8 @@ let arquivos = [
   '/index.html?launcher=true',
 
   // JSONS
-  '/default_categories.json',
+  '/res/default_categories.json',
+  '/res/manifest.json',
   /*
     DEAR READER,
     ADD A LIST OF YOUR ASSETS THAT
