@@ -7,7 +7,7 @@ self.addEventListener('install', e => {
   // to make this work offline
   e.waitUntil(
     caches.open('static::v' + cacheVersion).then(cache => {
-      return cache.addAll(arquivos).then(function(){
+      return cache.addAll(arquivos).then(() => {
         caches.delete('static::v' + (cacheVersion - 1));
         self.skipWaiting();
       });
@@ -21,9 +21,8 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     // ensure we check the *right* cache to match against
     caches.open('static::v' + cacheVersion).then(cache => {
-
       return cache.match(event.request).then(res => {
-        return res || fetch(event.request)
+        return res || fetch(event.request);
       });
     })
   );
@@ -31,12 +30,15 @@ self.addEventListener('fetch', event => {
 
 let arquivos = [
   '/',
-  // IAGES
+
+  // IMAGES
   '/img/icon-32.png',
   '/img/icon-192.png',
   '/img/icon-512.png',
+
   // MANIFEST
   '/manifest.json',
+
   // JAVASCRIPT
   '/js/about.js',
   '/js/accounts.js',
@@ -49,6 +51,7 @@ let arquivos = [
   '/js/script.js',
   '/js/settings.js',
   '/js/transactions.js',
+
   // CSS
   '/css/about.css',
   '/css/accounts.css',
@@ -57,6 +60,7 @@ let arquivos = [
   '/css/settings.css',
   '/css/style.min.css',
   '/css/transactions.css',
+
   // HTML
   '/about.html',
   '/accounts.html',
@@ -65,12 +69,13 @@ let arquivos = [
   '/settings.html',
   '/transactions.html',
   '/index.html?launcher=true',
+
   // JSONS
-  '/default_categories.json'
+  '/default_categories.json',
   /*
     DEAR READER,
     ADD A LIST OF YOUR ASSETS THAT
     YOU WANT TO WORK WHEN OFFLINE
     TO THIS ARRAY OF URLS
   */
-]
+];

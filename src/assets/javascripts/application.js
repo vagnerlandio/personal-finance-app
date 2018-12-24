@@ -1,18 +1,12 @@
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js')
-    .then(reg => console.info('registered sw', reg))
-    .catch(err => console.error('error registering sw', err));
-}
-
 $(document).ready(function(){
   $('.sidenav').sidenav();
   // Format currencies
   $('.currency-input').maskMoney({
-    prefix:'$ ',
+    prefix: '$ ',
     allowNegative: true,
-    thousands:',',
-    decimal:'.',
-    affixesStay: false
+    thousands: ',',
+    decimal: '.',
+    affixesStay: false,
   });
 });
 

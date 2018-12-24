@@ -12,13 +12,13 @@ const watchFiles = [
   javascriptsPath('**/*.js'),
   resourcesPath('**/*.*'),
   stylesheetsPath('**/*.scss'),
-  viewsPath('**/*.pug')
+  viewsPath('**/*.pug'),
 ];
 
 const watchDistFiles = [
   '**/*.html',
   'js/**/*.js',
-  'css/**/*.css'
+  'css/**/*.css',
 ];
 
 const tasks = [
@@ -26,7 +26,7 @@ const tasks = [
   'scripts',
   'resources',
   'styles',
-  'views'
+  'views',
 ];
 
 function imagesPath(param) {
@@ -35,7 +35,7 @@ function imagesPath(param) {
 }
 
 function javascriptsPath(param) {
-  const path = 'src/assets/javascript/';
+  const path = 'src/assets/javascripts/';
   return (typeof param === 'undefined') ? path : path + param;
 }
 
