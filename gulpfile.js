@@ -1,92 +1,127 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-// var rename = require('gulp-rename');
-var pug = require('gulp-pug');
-var concat = require('gulp-concat');
-var merge = require('merge-stream');
-var browserSync = require('browser-sync').create();
-var reload      = browserSync.reload;
-sass.compiler = require('node-sass');
-/*
- * Variables
- */
-var cssDest = './dist/css';
+const gulp        = require('gulp');
+const sass        = require('gulp-sass');
+// const rename   = require('gulp-rename');
+const pug         = require('gulp-pug');
+const concat      = require('gulp-concat');
+const merge       = require('merge-stream');
+const browser = require('browser-sync').create();
+sass.compiler   = require('node-sass');
 
-gulp.task('serve', function () {
-    browserSync.init({
-        server: {
-            baseDir: "./dist"
-        }
-    });
+// AUX VARIABLES & FUNCTIONS
+const watchFiles = [
+  imagesPath('**/*.*'),
+  javascriptsPath('**/*.js'),
+  resourcesPath('**/*.*'),
+  stylesheetsPath('**/*.scss'),
+  viewsPath('**/*.pug')
+];
 
-    gulp.watch(['*.html', 'js/*.js', 'css/*.css']).on("change", reload);
-});
+const tasks = [
+  'images',
+  'scripts',
+  'resources',
+  'styles',
+  'views'
+];
 
-// Task 'pages-sass' - Run with command 'gulp pages-sass'
-gulp.task('pages-sass', function(){
-  return gulp.src('./src/pages-sass/*.*')
-    .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
-    .pipe(gulp.dest(cssDest));
-});
+function imagesPath(param) {
+  const path = 'src/assets/images/';
+  return (typeof param === 'undefined') ? path : path + param;
+}
 
-// Task 'sass' - Run with command 'gulp sass'
-gulp.task('sass', function(){
-  return gulp.src('src/sass/style.scss')
-    .pipe(sass({ outputStyle: 'compressed' }))
-    .pipe(concat('style.min.css'))
-    .pipe(gulp.dest(cssDest));
-});
+function javascriptsPath(param) {
+  const path = 'src/assets/javascript/';
+  return (typeof param === 'undefined') ? path : path + param;
+}
 
-// Task 'css-dev' - Run with command 'gulp css-dev'
-gulp.task('css-dev', function(){
-  return gulp.src(scssFiles)
-    .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
-    .pipe(gulp.dest(cssDest));
-});
+function resourcesPath(param) {
+  const path = 'src/assets/resources/';
+  return (typeof param === 'undefined') ? path : path + param;
+}
 
-// Task 'vendor' - Run with command 'gulp vendor'
-gulp.task('vendor', function(){
-  var js = gulp.src('./src/vendor/js/*.js')
-    .pipe(gulp.dest('dist/js'));
-  var css = gulp.src('./src/vendor/css/*.css')
-    .pipe(gulp.dest('dist/css'));
-  return merge(js, css);
-});
+function stylesheetsPath(param) {
+  const path = 'src/assets/stylesheets/';
+  return (typeof param === 'undefined') ? path : path + param;
+}
 
+function viewsPath(param) {
+  const path = 'src/views/';
+  return (typeof param === 'undefined') ? path : path + param;
+}
+
+// TASKS
 // Task 'images' - Run with command 'gulp images'
-gulp.task('images', function(){
-  return gulp.src('./src/images/*')
+gulp.task('images', () => {
+  gulp.src(imagesPath())
     .pipe(gulp.dest('dist/img'));
 });
 
-// Task 'root-files' - Run with command 'gulp root-files'
-gulp.task('root-files', function(){
-  return gulp.src('./src/root-files/*.*')
+// Task 'scripts' - Run with command 'gulp scripts'
+gulp.task('scripts', () => {
+  let pages = gulp.src(javascriptsPath('pages/*.js'))
+    .pipe(gulp.dest('dist/js'));
+
+  let vendor = gulp.src(javascriptsPath('vendor/*.js'))
+    .pipe(gulp.dest('dist/js/vendor'));
+
+  let sw = gulp.src(javascriptsPath('service-worker.js'))
     .pipe(gulp.dest('dist'));
+
+  let app = gulp.src(javascriptsPath('application.js'))
+    .pipe(gulp.dest('dist/js'));
+
+  merge(pages, vendor, sw, app);
 });
 
-// Task 'html' - Run with command 'gulp html'
-gulp.task('html', function(){
-  return gulp.src('src/views/**/[^_]*.pug')
+// Task 'resources' - Run with command 'gulp resources'
+gulp.task('resources', () => {
+  gulp.src(resourcesPath())
+    .pipe(gulp.dest('dist/res'));
+});
+
+// Task 'styles' - Run with command 'gulp styles'
+gulp.task('styles', () => {
+  let pages = gulp.src(stylesheetsPath('pages/*.scss'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('dist/css'));
+
+  // let vendor = gulp.src(stylesheetsPath('vendor/*.scss'))
+  //   .pipe(sass().on('error', sass.logError))
+  //   .pipe(gulp.dest('dist/css'));
+
+  let app = gulp.src(stylesheetsPath('application.scss'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('dist/css'));
+
+  merge(pages,/* vendor,*/ app);
+});
+
+// Task 'views' - Run with command 'gulp views'
+gulp.task('views', () => {
+  gulp.src(viewsPath('pages/*.pug'))
     .pipe(pug())
     .pipe(gulp.dest('dist'));
 });
 
-// Task 'js' - Run with command 'gulp js'
-gulp.task('js', function(){
-  return gulp.src('./src/scripts/*.js')
-    // .pipe(concat('script.min.js'))
-    .pipe(gulp.dest('./dist/js'));
-});
-
+// SERVER TASK
 // Task 'watch' - Run with command 'gulp watch'
-gulp.task('watch', function(){
-  // Add 'css-dev' for non-minified css
-  gulp.watch('./src/**/*.*', ['html', 'sass', 'pages-sass', 'js', 'vendor', 'images', 'root-files']).on('change', browserSync.reload);
+gulp.task('watch', () => {
 });
 
-// Default task - Run with command 'gulp'
-// Add 'css-dev' for non-minified assets
-gulp.task('default', ['html', 'sass', 'pages-sass', 'js', 'vendor', 'images', 'root-files', 'watch', 'serve']);
+gulp.task('server', () => {
+  const watchDistFiles = [
+    '**/*.html',
+    'js/**/*.js',
+    'css/**/*.css'
+  ];
 
-gulp.task('build', ['html', 'sass', 'pages-sass', 'js', 'vendor', 'images', 'root-files']);
+  browser.init({
+    server: {
+      baseDir: 'dist'
+    }
+  });
+
+});
+
+// MAIN TASKS
+gulp.task('default', tasks);

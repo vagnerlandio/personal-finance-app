@@ -1,9 +1,9 @@
-$(document).ready(function() {
+$(document).ready(function () {
   $('.overview').addClass('active');
   selectCategory();
   $('select').formSelect();
   $('.fixed-action-btn').floatingActionButton({
-    hoverEnabled: false
+    hoverEnabled: false;
   });
   $('.modal').modal();
   updateDate();
@@ -36,7 +36,7 @@ var months = {
   10: 'October',
   11: 'November',
   12: 'December'
-}
+};
 
 function updateDate() {
   $("#current-month").text(months[currentMonth]);
@@ -45,7 +45,7 @@ function updateDate() {
 
 function prevMonth() {
   if (currentMonth > 1) {
-    currentMonth--
+    currentMonth--;
   } else {
     currentMonth = 12;
     currentYear--;
