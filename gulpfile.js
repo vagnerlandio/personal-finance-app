@@ -1,11 +1,10 @@
-const gulp        = require('gulp');
-const sass        = require('gulp-sass');
-// const rename   = require('gulp-rename');
-const pug         = require('gulp-pug');
-const concat      = require('gulp-concat');
-const merge       = require('merge-stream');
+const gulp    = require('gulp');
+const sass    = require('gulp-sass');
+const pug     = require('gulp-pug');
+const concat  = require('gulp-concat');
+const merge   = require('merge-stream');
+const del     = require('del');
 const browser = require('browser-sync').create();
-sass.compiler   = require('node-sass');
 
 // AUX VARIABLES & FUNCTIONS
 const watchFiles = [
@@ -56,6 +55,11 @@ function viewsPath(param) {
 }
 
 // TASKS
+// Task 'del' - Run with command 'gulp del'
+gulp.task('del', () => {
+  del(['dist']);
+});
+
 // Task 'images' - Run with command 'gulp images'
 gulp.task('images', () => {
   gulp.src(imagesPath())
@@ -99,7 +103,7 @@ gulp.task('styles', () => {
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('dist/css'));
 
-  merge(pages,/* vendor,*/ app, bs.reload({ stream: true }));
+  merge(pages,/* vendor,*/ app, browser.reload({ stream: true }));
 });
 
 // Task 'views' - Run with command 'gulp views'
@@ -125,6 +129,8 @@ gulp.task('server', tasks, () => {
 
   gulp.watch(watchFiles, tasks);
   gulp.watch(watchDistFiles).on('change', browser.reload);
+  // gulp.watch(watchFiles).on('change', browser.reload);
+
 });
 
 // MAIN TASKS
