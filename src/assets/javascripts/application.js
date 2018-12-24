@@ -16,7 +16,7 @@ var entries = new IDBStore({
   storeName: 'entry',
   keyPath: 'id',
   autoIncrement: true,
-  onStoreReady: function(){
+  onStoreReady: () => {
     console.log('Entry ready!');
   }
 });
