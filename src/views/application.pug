@@ -12,12 +12,12 @@ mixin add_script(src)
 
 doctype html
 html(lang='en')
-  include includes/_head.pug
+  include shared/_head.pug
   body
-    include includes/_sidenav.pug
+    include shared/_sidenav.pug
     main
       block content
     footer
-      include includes/_footer.pug
-    include includes/_scripts.pug
+      include shared/_footer.pug
+    include shared/_scripts.pug
     block floating

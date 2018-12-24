@@ -5,7 +5,7 @@ $red-color: #f45531;
 $green-color: #1fc08f;
 $yellow-color: #ffc044;
 $blue-color: #0c92d2;
-@import "materialize.scss";
+@import "vendor/materialize.scss";
 
 header, main, footer {
   padding-left: 300px;
