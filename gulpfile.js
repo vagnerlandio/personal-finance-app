@@ -16,6 +16,12 @@ const watchFiles = [
   viewsPath('**/*.pug')
 ];
 
+const watchDistFiles = [
+  '**/*.html',
+  'js/**/*.js',
+  'css/**/*.css'
+];
+
 const tasks = [
   'images',
   'scripts',
@@ -93,7 +99,7 @@ gulp.task('styles', () => {
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('dist/css'));
 
-  merge(pages,/* vendor,*/ app);
+  merge(pages,/* vendor,*/ app, bs.reload({ stream: true }));
 });
 
 // Task 'views' - Run with command 'gulp views'
@@ -106,14 +112,10 @@ gulp.task('views', () => {
 // SERVER TASK
 // Task 'watch' - Run with command 'gulp watch'
 gulp.task('watch', () => {
+  gulp.watch(watchFiles, tasks);
 });
 
-gulp.task('server', () => {
-  const watchDistFiles = [
-    '**/*.html',
-    'js/**/*.js',
-    'css/**/*.css'
-  ];
+gulp.task('server', tasks, () => {
 
   browser.init({
     server: {
@@ -121,6 +123,8 @@ gulp.task('server', () => {
     }
   });
 
+  gulp.watch(watchFiles, tasks);
+  gulp.watch(watchDistFiles).on('change', browser.reload);
 });
 
 // MAIN TASKS
