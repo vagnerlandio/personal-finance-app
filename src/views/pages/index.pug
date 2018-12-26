@@ -9,18 +9,7 @@ block title
 block nav_title
   a(href="#!" class="brand-logo center")= title
 block nav_content
-  .nav-content
-    .col
-      a.btn-flat.btn-large.waves-effect.waves-light.black-text#prev-month
-        i.material-icons arrow_back
-    .col
-      h5.grey-text
-        span#current-month| 
-        | 
-        span#current-year| 
-    .col
-      a.btn-flat.btn-large.waves-effect.waves-light.black-text#next-month
-        i.material-icons arrow_forward
+  include ../shared/_nav_content.pug
 block page_script
   +add_script('js/index.js')
 block floating

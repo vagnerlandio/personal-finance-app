@@ -8,6 +8,8 @@ block title
   +head_title(title)
 block nav_title
   a(href="#!" class="brand-logo center")= title
+block nav_content
+  include ../shared/_nav_content.pug
 block page_script
   +add_script('js/transactions.js')
 block floating

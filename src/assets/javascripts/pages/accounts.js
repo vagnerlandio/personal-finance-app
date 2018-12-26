@@ -1,3 +1,4 @@
 $(() => {
   $('.accounts').addClass('active');
+  updateDate();
 });
