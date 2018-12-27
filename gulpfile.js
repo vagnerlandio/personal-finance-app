@@ -123,12 +123,13 @@ gulp.task('server', tasks, () => {
 
   browser.init({
     server: {
-      baseDir: 'dist'
-    }
+      baseDir: 'dist',
+    },
   });
 
   gulp.watch(watchFiles, tasks);
   gulp.watch(watchDistFiles).on('change', browser.reload);
+
   // gulp.watch(watchFiles).on('change', browser.reload);
 
 });
