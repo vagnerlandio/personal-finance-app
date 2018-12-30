@@ -6,6 +6,9 @@ $(() => {
     hoverEnabled: false
   });
   $('.modal').modal();
+  $('.datepicker').datepicker({
+    defaultDate: new Today(),
+  });
   updateDate();
 });
 

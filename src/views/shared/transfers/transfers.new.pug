@@ -1,0 +1,32 @@
+#new-transfer.modal.bottom-sheet
+  .modal-content
+    h4 New Transfer
+    .row
+      form.col.s12
+        .row
+          //- Description
+          .input-field.col.s12.m6.l6
+            i.material-icons.prefix mode_edit
+            textarea#transfer-description.materialize-textarea
+            label(for='transfer-description') Description
+          //- Amount
+          .input-field.col.s12.m6.l6
+            i.material-icons.prefix attach_money
+            input#transfer-amount.currency-input(type="text" pattern="[0-9]*" inputmode="numeric")
+            label(for='transfer-amount') Amount
+          //- Due date
+          .input-field.col.s12.m6.l6
+            i.material-icons.prefix attach_money
+            input#transfer-due-date(type="text" class="datepicker")
+            label(for='transfer-due-date') Due date
+          //- Status
+          //- Origin
+          //- Destination
+          .input-field.col.s12
+            i.material-icons.prefix transfer_balance
+            select#transfer-category
+              option(value='', disabled='', selected='') Choose your option
+            label Category
+  .modal-footer
+    a.modal-close.waves-effect.waves-green.btn-flat.left(href='#!') Cancel
+    a.modal-close.waves-effect.waves-green.btn-flat(href='#!') Save
