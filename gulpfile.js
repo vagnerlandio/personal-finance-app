@@ -115,7 +115,9 @@ function styles(done) {
 // Task 'views' - Run with command 'gulp views'
 function views() {
   return src(viewsPath('pages/*.pug'))
-    .pipe(pug())
+    .pipe(pug({
+      pretty: true,
+    }))
     .pipe(dest('dist'));
 }
 
