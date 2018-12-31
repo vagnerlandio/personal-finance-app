@@ -63,14 +63,12 @@ function images() {
 function scripts(done) {
   function pages() {
     return src(javascriptsPath('pages/*.js'))
-    .pipe(dest('dist/js'))
-    .pipe(browserSync.stream());
+    .pipe(dest('dist/js'));
   }
 
   function vendor() {
     return src(javascriptsPath('vendor/*.js'))
-    .pipe(dest('dist/js/vendor'))
-    .pipe(browserSync.stream());
+    .pipe(dest('dist/js/vendor'));
   }
 
   function sw() {
@@ -80,8 +78,7 @@ function scripts(done) {
 
   function app() {
     return src(javascriptsPath('application.js'))
-    .pipe(dest('dist/js'))
-    .pipe(browserSync.stream());
+    .pipe(dest('dist/js'));
   }
 
   series(pages, vendor, sw, app)(done);
@@ -98,15 +95,13 @@ function styles(done) {
   function pages() {
     return src(stylesheetsPath('pages/*.scss'))
       .pipe(sass().on('error', sass.logError))
-      .pipe(dest('dist/css'))
-      .pipe(browserSync.stream());
+      .pipe(dest('dist/css'));
   }
 
   function app() {
     return src(stylesheetsPath('application.scss'))
       .pipe(sass().on('error', sass.logError))
-      .pipe(dest('dist/css'))
-      .pipe(browserSync.stream());
+      .pipe(dest('dist/css'));
   }
 
   series(pages, app)(done);
@@ -137,23 +132,25 @@ function build(done) {
 // SERVER TASK
 // Task 'watch' - Run with command 'gulp watch'
 function watcher() {
-  watch(imagesPath('**/*.*'), images);
-  watch(javascriptsPath('**/*.js'), scripts);
-  watch(resourcesPath('**/*.*'), resources);
-  watch(stylesheetsPath('**/*.scss'), styles);
-  watch(viewsPath('**/*.pug'), views);
+  watch(imagesPath('**/*.*'), series(images, reload));
+  watch(javascriptsPath('**/*.js'), series(scripts, reload));
+  watch(resourcesPath('**/*.*'), series(resources, reload));
+  watch(stylesheetsPath('**/*.scss'), series(styles));
+  watch(viewsPath('**/*.pug'), series(views, reload));
 }
 
-function reload() {
-  return server.reload();
+function reload(done) {
+  server.reload();
+  done();
 }
 
-function serve() {
-  return server.init({
+function serve(done) {
+  server.init({
     server: {
       baseDir: './dist',
     },
   });
+  done();
 }
 
 exports.clean = clean;
@@ -176,4 +173,9 @@ exports.build = series(
     styles,
     views
   )
+);
+exports.dev = series(
+  build,
+  serve,
+  watcher
 );
