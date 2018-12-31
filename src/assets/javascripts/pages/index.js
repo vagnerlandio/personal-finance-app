@@ -3,18 +3,16 @@ $(() => {
   selectCategory();
   $('select').formSelect();
   $('.fixed-action-btn').floatingActionButton({
-    hoverEnabled: false
+    hoverEnabled: false,
   });
   $('.modal').modal();
-  $('.datepicker').datepicker({
-    defaultDate: new Today(),
-  });
+  $('.datepicker').datepicker();
   updateDate();
 });
 
 function selectCategory() {
   var accounts = JSON.parse(localStorage.getItem('accounts'));
-  $.each(accounts, function(index, value) {
-    $("#account-category").append(new Option(value, value.toLowerCase().split(" ").join("_")));
+  $.each(accounts, (index, value) => {
+    $('#account-category').append(new Option(value, value.toLowerCase().split(' ').join('_')));
   });
 }
