@@ -48,104 +48,110 @@ function viewsPath(param) {
 
 // TASKS
 // Task 'del' - Run with command 'gulp del'
-function clean(done) {
-  del(['dist']);
-  done();
+function clean() {
+  return del(['dist']);
 }
 
 // Task 'images' - Run with command 'gulp images'
-function images(done) {
-  src(imagesPath('*.*'))
+function images() {
+  return src(imagesPath('*.*'))
     .pipe(dest('dist/img'));
-  done();
 }
 
 // Task 'scripts' - Run with command 'gulp scripts'
-function scriptsPages(done) {
-  src(javascriptsPath('pages/*.js'))
-    .pipe(dest('dist/js'))
-    .pipe(browserSync.stream());
-  done();
-}
-
-function scriptsVendor(done) {
-  src(javascriptsPath('vendor/*.js'))
-    .pipe(dest('dist/js/vendor'))
-    .pipe(browserSync.stream());
-  done();
-}
-
-function scriptsSw(done) {
-  src(javascriptsPath('service-worker.js'))
-    .pipe(dest('dist'));
-  done();
-}
-
-function scriptsApp(done) {
-  src(javascriptsPath('application.js'))
-    .pipe(dest('dist/js'))
-    .pipe(browserSync.stream());
-  done();
-}
 
 function scripts(done) {
-  series(scriptsPages, scriptsVendor, scriptsSw, scriptsApp)(done);
+  function pages() {
+    return src(javascriptsPath('pages/*.js'))
+    .pipe(dest('dist/js'))
+    .pipe(browserSync.stream());
+  }
+
+  function vendor() {
+    return src(javascriptsPath('vendor/*.js'))
+    .pipe(dest('dist/js/vendor'))
+    .pipe(browserSync.stream());
+  }
+
+  function sw() {
+    return src(javascriptsPath('service-worker.js'))
+    .pipe(dest('dist'));
+  }
+
+  function app() {
+    return src(javascriptsPath('application.js'))
+    .pipe(dest('dist/js'))
+    .pipe(browserSync.stream());
+  }
+
+  series(pages, vendor, sw, app)(done);
 }
 
 // Task 'resources' - Run with command 'gulp resources'
-function resources(done) {
-  src(resourcesPath('*.*'))
+function resources() {
+  return src(resourcesPath('*.*'))
     .pipe(dest('dist/res'));
-  done();
 }
 
 // Task 'styles' - Run with command 'gulp styles'
 function styles(done) {
-  function pages(done) {
-    src(stylesheetsPath('pages/*.scss'))
+  function pages() {
+    return src(stylesheetsPath('pages/*.scss'))
       .pipe(sass().on('error', sass.logError))
       .pipe(dest('dist/css'))
       .pipe(browserSync.stream());
-    done();
   }
 
-  function app(done) {
-    src(stylesheetsPath('application.scss'))
+  function app() {
+    return src(stylesheetsPath('application.scss'))
       .pipe(sass().on('error', sass.logError))
       .pipe(dest('dist/css'))
       .pipe(browserSync.stream());
-    done();
   }
 
   series(pages, app)(done);
 }
 
 // Task 'views' - Run with command 'gulp views'
-function views(done) {
-  src(viewsPath('pages/*.pug'))
+function views() {
+  return src(viewsPath('pages/*.pug'))
     .pipe(pug())
     .pipe(dest('dist'));
-  done();
+}
+
+function build(done) {
+  series(
+    clean,
+    parallel(
+      images,
+      scripts,
+      resources,
+      styles,
+      views
+    )
+  )(done);
 }
 
 // SERVER TASK
 // Task 'watch' - Run with command 'gulp watch'
 function watcher() {
-  watch(watchFiles, series(images, scripts, resources, styles, views));
+  watch(imagesPath('**/*.*'), images);
+  watch(javascriptsPath('**/*.js'), scripts);
+  watch(resourcesPath('**/*.*'), resources);
+  watch(stylesheetsPath('**/*.scss'), styles);
+  watch(viewsPath('**/*.pug'), views);
 }
 
-function reload(done) {
-  server.reload();
-  done();
+function reload() {
+  return server.reload();
 }
 
-function serve(done) {
-  server.init({
+function serve() {
+  return server.init({
     server: {
-      baseDir: 'dist',
+      baseDir: './dist',
     },
   });
-  done();
 }
 
 exports.clean = clean;
@@ -154,7 +160,7 @@ exports.scripts = scripts;
 exports.resources = resources;
 exports.styles = styles;
 exports.views = views;
-exports.watcher = watcher;
+exports.watcher = series(build, watcher);
 exports.reload = reload;
 exports.serve = serve;
 
