@@ -67,7 +67,7 @@ function scripts(done) {
   }
 
   function vendor() {
-    return src(javascriptsPath('vendor/*.js'))
+    return src([javascriptsPath('vendor/*.js'), 'node_modules/chart.js/dist/Chart.bundle.min.js'])
     .pipe(dest('dist/js/vendor'));
   }
 
