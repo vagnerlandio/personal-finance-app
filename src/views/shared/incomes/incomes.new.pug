@@ -4,19 +4,42 @@
     .row
       form.col.s12
         .row
-          .input-field.col.s12.m6.l6
-            i.material-icons.prefix mode_edit
-            textarea#account-description.materialize-textarea
-            label(for='account-description') Description
-          .input-field.col.s12.m6.l6
-            i.material-icons.prefix attach_money
-            input#account-balance.currency-input(type="text" pattern="[0-9]*" inputmode="numeric")
-            label(for='account-balance') Opening Balance
-          .input-field.col.s12
-            i.material-icons.prefix account_balance
-            select#account-category
-              option(value='', disabled='', selected='') Choose your option
-            label Category
+          .row
+            //- Description
+            .input-field.col.s12.m6
+              i.material-icons.prefix mode_edit
+              textarea#incomes-description.materialize-textarea
+              label(for='incomes-description') Description
+            //- Amount
+            .input-field.col.s12.m6
+              i.material-icons.prefix attach_money
+              input#incomes-balance.currency-input(type="text" pattern="[0-9]*" inputmode="numeric")
+              label(for='incomes-balance') Amount
+          .row
+            //- Due date
+            .input-field.col.s6
+              i.material-icons.prefix today
+              input#incomes-due-date(type="text" class="datepicker")
+              label(for='incomes-due-date') Due date
+            //- Status
+            .col.s6
+              i.material-icons.prefix spellcheck
+              label
+                input#incomes-status(type='checkbox')
+                span Confirmed
+          .row
+            //- Category
+            .input-field.col.s12
+              i.material-icons.prefix category
+              select#incomes-category
+                option(value='', disabled='', selected='') Choose your option
+              label Category
+            //- Account
+            .input-field.col.s12
+              i.material-icons.prefix account_balance
+              select#incomes-category
+                option(value='', disabled='', selected='') Choose your option
+              label Account
   .modal-footer
     a.modal-close.waves-effect.waves-green.btn-flat.left(href='#!') Cancel
     a.modal-close.waves-effect.waves-green.btn-flat(href='#!') Save
