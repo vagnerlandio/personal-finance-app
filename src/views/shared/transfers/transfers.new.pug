@@ -15,18 +15,28 @@
             input#transfer-amount.currency-input(type="text" pattern="[0-9]*" inputmode="numeric")
             label(for='transfer-amount') Amount
           //- Due date
-          .input-field.col.s12.m6.l6
-            i.material-icons.prefix attach_money
+          .input-field.col.s6.m6.l6
+            i.material-icons.prefix today
             input#transfer-due-date(type="text" class="datepicker")
             label(for='transfer-due-date') Due date
           //- Status
+          .col.s5.m5.l5
+            i.material-icons.prefix spellcheck
+            label
+              input#transfer-status(type='checkbox')
+              span Confirmed
           //- Origin
-          //- Destination
           .input-field.col.s12
-            i.material-icons.prefix transfer_balance
+            i.material-icons.prefix arrow_upward
             select#transfer-category
               option(value='', disabled='', selected='') Choose your option
-            label Category
+            label Origin
+          //- Destination
+          .input-field.col.s12
+            i.material-icons.prefix arrow_downward
+            select#transfer-category
+              option(value='', disabled='', selected='') Choose your option
+            label Destination
   .modal-footer
     a.modal-close.waves-effect.waves-green.btn-flat.left(href='#!') Cancel
     a.modal-close.waves-effect.waves-green.btn-flat(href='#!') Save
