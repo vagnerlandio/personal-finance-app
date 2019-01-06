@@ -9,11 +9,11 @@ $(() => {
     decimal: '.',
     affixesStay: false,
   });
-  $("#prev-month").on('click', function(event) {
+  $('#prev-month').on('click', (event) => {
     event.preventDefault();
     prevMonth();
   });
-  $("#next-month").on('click', function(event) {
+  $('#next-month').on('click', (event) => {
     event.preventDefault();
     nextMonth();
   });
@@ -23,8 +23,8 @@ $(() => {
 var today = new Date();
 var month = today.getMonth() + 1; //January is 0!
 var year = today.getFullYear();
-var currentMonth = month,
-  currentYear = year;
+var currentMonth = month;
+var currentYear = year;
 var months = {
   1: 'January',
   2: 'February',
@@ -37,12 +37,30 @@ var months = {
   9: 'September',
   10: 'October',
   11: 'November',
-  12: 'December'
+  12: 'December',
+};
+var monthsAbbr = {
+  1: 'Jan',
+  2: 'Feb',
+  3: 'Mar',
+  4: 'Apr',
+  5: 'May',
+  6: 'Jun',
+  7: 'Jul',
+  8: 'Aug',
+  9: 'Sep',
+  10: 'Oct',
+  11: 'Nov',
+  12: 'Dec',
 };
 
 function updateDate() {
-  $("#current-month").text(months[currentMonth]);
-  $("#current-year").text(currentYear);
+  if (currentYear === year) {
+    $('#current-month').text(months[currentMonth]);
+  } else {
+    $('#current-month').text(monthsAbbr[currentMonth]);
+    $('#current-year').text(currentYear);
+  }
 }
 
 function prevMonth() {
@@ -52,17 +70,19 @@ function prevMonth() {
     currentMonth = 12;
     currentYear--;
   }
+
   updateDate();
   $('main').fadeOut(150, () => $('main').fadeToggle(150));
 }
 
 function nextMonth() {
   if (currentMonth < 12) {
-    currentMonth++
+    currentMonth++;
   } else {
     currentMonth = 1;
     currentYear++;
   }
+
   updateDate();
   $('main').fadeOut(150, () => $('main').fadeToggle(150));
 }
