@@ -22,19 +22,37 @@ let ctx = document.getElementById('bar-chart-balance');
 var myChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ['Income', 'Expense', 'Foreseen'],
+    labels: ['Balance'],
     datasets: [{
-      label: 'Total Balance',
-      data: [10000, -5000, 5000],
+      label: 'Income',
+      data: [10000],
       backgroundColor: [
         'rgba(31, 192, 143, 0.2)',
-        'rgba(244, 85, 49, 0.2)',
-        'rgba(255, 192, 68, 0.2)',
       ],
       borderColor: [
         'rgba(31, 192, 143, 1)',
+      ],
+      borderWidth: 3,
+    },
+    {
+      label: 'Expense',
+      data: [5000],
+      backgroundColor: [
+        'rgba(244, 85, 49, 0.2)',
+      ],
+      borderColor: [
         'rgba(244, 85, 49, 1)',
-        'rgba(255, 192, 68, 1)',
+      ],
+      borderWidth: 3,
+    },
+    {
+      label: 'Foreseen',
+      data: [5000],
+      backgroundColor: [
+        'rgba(12, 146, 210, 0.2)',
+      ],
+      borderColor: [
+        'rgba(12, 146, 210, 1)',
       ],
       borderWidth: 3,
     }]
