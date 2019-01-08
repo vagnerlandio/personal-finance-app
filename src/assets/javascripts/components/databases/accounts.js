@@ -1,15 +1,11 @@
 // ACCOUNTS
-let accountDescription = $('#account-description');
-let accountBalance = $('#account-balance');
-let accountCategory = $('#account-category');
-
 // Create
 function createAccount() {
   dbAccounts.put({
-    '_id': accountDescription.val().toLowerCase(),
-    'description': accountDescription.val(),
-    'opening_balance': accountBalance.val(),
-    'category': accountCategory.find(':selected').text(),
+    _id: $('#account-description').val().toLowerCase(),
+    description: $('#account-description').val(),
+    opening_balance: $('#account-balance').val(),
+    category: $('#account-category').find(':selected').text(),
   }).then(function (response) {
     alert('Account "' + response.id + '" created with successus!');
   }).catch(function (err) {
