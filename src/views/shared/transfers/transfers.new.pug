@@ -28,15 +28,15 @@
           //- Origin
           .input-field.col.s12
             i.material-icons.prefix arrow_upward
-            select#transfer-category
+            select#transfer-origin
               option(value='', disabled='', selected='') Choose your option
             label Origin
           //- Destination
           .input-field.col.s12
             i.material-icons.prefix arrow_downward
-            select#transfer-category
+            select#transfer-destination
               option(value='', disabled='', selected='') Choose your option
             label Destination
   .modal-footer
     a.modal-close.waves-effect.waves-green.btn-flat.left(href='#!') Cancel
-    a.modal-close.waves-effect.waves-green.btn-flat(href='#!') Save
+    a.modal-close.waves-effect.waves-green.btn-flat(href='#!' onclick='createTransfer()') Save
