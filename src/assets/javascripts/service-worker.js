@@ -47,7 +47,7 @@ let arquivos = [
   '/js/vendor/jquery-3.3.1.min.js',
   '/js/vendor/jquery.maskMoney.min.js',
   '/js/vendor/materialize.min.js',
-  '/js/vendor/IDBWrapper.js',
+  '/js/vendor/pouchdb.min.js',
 
   // CSS
   '/css/about.css',
