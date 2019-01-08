@@ -4,6 +4,7 @@ const pug         = require('gulp-pug');
 const merge       = require('merge-stream');
 const del         = require('del');
 const browserSync = require('browser-sync');
+const concat      = require('gulp-concat');
 const server      = browserSync.create();
 
 // AUX VARIABLES & FUNCTIONS
@@ -77,8 +78,9 @@ function scripts(done) {
   }
 
   function app() {
-    return src(javascriptsPath('application.js'))
-    .pipe(dest('dist/js'));
+    return src([javascriptsPath('components/**/*.js'), javascriptsPath('application.js')])
+      .pipe(concat('application.js'))
+      .pipe(dest('dist/js'));
   }
 
   series(pages, vendor, sw, app)(done);
