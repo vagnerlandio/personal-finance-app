@@ -2,7 +2,6 @@
 // Create
 function createAccount() {
   dbAccounts.put({
-    _id: $('#account-description').val().toLowerCase(),
     description: $('#account-description').val(),
     opening_balance: $('#account-balance').val(),
     category: $('#account-category').find(':selected').text(),
