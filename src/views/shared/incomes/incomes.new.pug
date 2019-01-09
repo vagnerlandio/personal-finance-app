@@ -8,36 +8,36 @@
             //- Description
             .input-field.col.s12.m6
               i.material-icons.prefix mode_edit
-              textarea#incomes-description.materialize-textarea
-              label(for='incomes-description') Description
+              textarea#income-description.materialize-textarea
+              label(for='income-description') Description
             //- Amount
             .input-field.col.s12.m6
               i.material-icons.prefix attach_money
-              input#incomes-balance.currency-input(type="text" pattern="[0-9]*" inputmode="numeric")
-              label(for='incomes-balance') Amount
+              input#income-balance.currency-input(type="text" pattern="[0-9]*" inputmode="numeric")
+              label(for='income-balance') Amount
           .row
             //- Due date
             .input-field.col.s6
               i.material-icons.prefix today
-              input#incomes-due-date(type="text" class="datepicker")
-              label(for='incomes-due-date') Due date
+              input#income-due-date(type="text" class="datepicker")
+              label(for='income-due-date') Due date
             //- Status
             .col.s6
               i.material-icons.prefix spellcheck
               label
-                input#incomes-status(type='checkbox')
+                input#income-status(type='checkbox')
                 span Confirmed
           .row
             //- Category
             .input-field.col.s12
               i.material-icons.prefix category
-              select#incomes-category
+              select#income-category
                 option(value='', disabled='', selected='') Choose your option
               label Category
             //- Account
             .input-field.col.s12
               i.material-icons.prefix account_balance
-              select#incomes-category
+              select#income-category
                 option(value='', disabled='', selected='') Choose your option
               label Account
   .modal-footer
