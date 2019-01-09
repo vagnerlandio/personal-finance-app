@@ -8,36 +8,36 @@
             //- Description
             .input-field.col.s12.m6
               i.material-icons.prefix mode_edit
-              textarea#expenses-description.materialize-textarea
-              label(for='expenses-description') Description
+              textarea#expense-description.materialize-textarea
+              label(for='expense-description') Description
             //- Amount
             .input-field.col.s12.m6
               i.material-icons.prefix attach_money
-              input#expenses-balance.currency-input(type="text" pattern="[0-9]*" inputmode="numeric")
-              label(for='expenses-balance') Amount
+              input#expense-balance.currency-input(type="text" pattern="[0-9]*" inputmode="numeric")
+              label(for='expense-balance') Amount
           .row
             //- Due date
             .input-field.col.s6
               i.material-icons.prefix today
-              input#expenses-due-date(type="text" class="datepicker")
-              label(for='expenses-due-date') Due date
+              input#expense-due-date(type="text" class="datepicker")
+              label(for='expense-due-date') Due date
             //- Status
             .col.s6
               i.material-icons.prefix spellcheck
               label
-                input#expenses-status(type='checkbox')
+                input#expense-status(type='checkbox')
                 span Confirmed
           .row
             //- Category
             .input-field.col.s12
               i.material-icons.prefix category
-              select#expenses-category
+              select#expense-category
                 option(value='', disabled='', selected='') Choose your option
               label Category
             //- Account
             .input-field.col.s12
               i.material-icons.prefix account_balance
-              select#expenses-category
+              select#expense-account
                 option(value='', disabled='', selected='') Choose your option
               label Account
   .modal-footer
