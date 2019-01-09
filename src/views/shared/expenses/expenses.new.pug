@@ -13,8 +13,8 @@
             //- Amount
             .input-field.col.s12.m6
               i.material-icons.prefix attach_money
-              input#expense-balance.currency-input(type="text" pattern="[0-9]*" inputmode="numeric")
-              label(for='expense-balance') Amount
+              input#expense-amount.currency-input(type="text" pattern="[0-9]*" inputmode="numeric")
+              label(for='expense-amount') Amount
           .row
             //- Due date
             .input-field.col.s6
@@ -32,13 +32,13 @@
             .input-field.col.s12
               i.material-icons.prefix category
               select#expense-category
-                option(value='', disabled='', selected='') Choose your option
+                option(value='', disabled='disabled', selected='selected') Choose your option
               label Category
             //- Account
             .input-field.col.s12
               i.material-icons.prefix account_balance
               select#expense-account
-                option(value='', disabled='', selected='') Choose your option
+                option(value='', disabled='disabled', selected='selected') Choose your option
               label Account
   .modal-footer
     a.modal-close.waves-effect.waves-green.btn-flat.left(href='#!' onclick='cleanExpenseForm()') Cancel
