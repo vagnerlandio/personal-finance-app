@@ -68,7 +68,6 @@ let arquivos = [
   '/index.html?launcher=true',
 
   // JSONS
-  '/res/default_categories.json',
   '/res/manifest.json',
   /*
     DEAR READER,
