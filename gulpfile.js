@@ -151,6 +151,7 @@ function serve(done) {
     server: {
       baseDir: './dist',
     },
+    open: false,
   });
   done();
 }
