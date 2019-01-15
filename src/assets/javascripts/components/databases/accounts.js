@@ -24,6 +24,19 @@ function createAccount(description, openingBalance, category) {
 }
 
 // Read
+let allAccounts = [];
+function readAllAccounts() {
+  dbAccounts.allDocs({
+    include_docs: true,
+  }).then((result) => {
+    allAccounts = [];
+    $.each(result.rows, (index, el) => {
+      allAccounts.push(el.doc);
+    });
+  }).catch((err) => {
+    console.log(err);
+  });
+}
 
 // Update
 
