@@ -8,6 +8,8 @@ $(() => {
   $('.modal').modal();
   $('.datepicker').datepicker();
   updateDate();
+  loadAccountsIn('#income-account');
+  loadAccountsIn('#expense-account');
 });
 
 function selectCategory() {

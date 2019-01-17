@@ -1,9 +1,23 @@
 // INCOMES
+$(() => {
+  loadIncomeCategories();
+});
+
 function cleanIncomeForm() {
   $('#income-description').val('');
   $('#income-amount').val('');
   $('#income-due-date').val('');
   $('#income-status').attr('checked', false);
+}
+
+function loadIncomeCategories() {
+  let categories = JSON.parse(localStorage.getItem('incomes'));
+
+  $.each(categories, (index, value) => {
+    $('#income-category').append(new Option(value, value.toLowerCase()));
+  });
+
+  $('select').formSelect();
 }
 
 // Create

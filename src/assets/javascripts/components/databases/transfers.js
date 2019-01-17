@@ -32,6 +32,8 @@ function createTransfer(description, amount, dueDate, status, origin, destinatio
 }
 
 // Read
+// loadAccountsIn('#transfer-origin');
+// loadAccountsIn('#transfer-destination');
 
 // Update
 
