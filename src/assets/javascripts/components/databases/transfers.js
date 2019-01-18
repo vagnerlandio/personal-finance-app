@@ -8,12 +8,30 @@ function cleanTransferForm() {
 
 // Create
 function createTransfer(description, amount, dueDate, status, origin, destination) {
-  if (arguments[0] === undefined) $('#transfer-description').val();
-  if (arguments[1] === undefined) $('#transfer-amount').val();
-  if (arguments[2] === undefined) $('#transfer-due-date').val();
-  if (arguments[3] === undefined) $('#transfer-status').is(':checked');
-  if (arguments[4] === undefined) $('#transfer-origin').find(':selected').text();
-  if (arguments[5] === undefined) $('#transfer-destination').find(':selected').text();
+  if (arguments[0] === undefined) {
+    arguments[0] = $('#transfer-description').val();
+  }
+
+  if (arguments[1] === undefined) {
+    arguments[1] = $('#transfer-amount').val();
+  }
+
+  if (arguments[2] === undefined) {
+    arguments[2] = $('#transfer-due-date').val();
+  }
+
+  if (arguments[3] === undefined) {
+    arguments[3] = $('#transfer-status').is(':checked');
+  }
+
+  if (arguments[4] === undefined) {
+    arguments[4] = $('#transfer-origin').find(':selected').text();
+  }
+
+  if (arguments[5] === undefined) {
+    arguments[5] = $('#transfer-destination').find(':selected').text();
+  }
+
 
   dbTransfers.put({
     _id: new Date().toJSON(),
@@ -32,8 +50,8 @@ function createTransfer(description, amount, dueDate, status, origin, destinatio
 }
 
 // Read
-// loadAccountsIn('#transfer-origin');
-// loadAccountsIn('#transfer-destination');
+loadAccountsIn('#transfer-origin');
+loadAccountsIn('#transfer-destination');
 
 // Update
 

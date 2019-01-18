@@ -22,12 +22,30 @@ function loadIncomeCategories() {
 
 // Create
 function createIncome(description, amount, dueDate, status, category, account) {
-  if (arguments[0] === undefined) $('#income-description').val();
-  if (arguments[1] === undefined) $('#income-amount').val();
-  if (arguments[2] === undefined) $('#income-due-date').val();
-  if (arguments[3] === undefined) $('#income-status').is(':checked');
-  if (arguments[4] === undefined) $('#income-category').find(':selected').text();
-  if (arguments[5] === undefined) $('#income-account').find(':selected').text();
+  if (arguments[0] === undefined) {
+    arguments[0] = $('#income-description').val();
+  }
+
+  if (arguments[1] === undefined) {
+    arguments[1] = $('#income-amount').val();
+  }
+
+  if (arguments[2] === undefined) {
+    arguments[2] = $('#income-due-date').val();
+  }
+
+  if (arguments[3] === undefined) {
+    arguments[3] = $('#income-status').is(':checked');
+  }
+
+  if (arguments[4] === undefined) {
+    arguments[4] = $('#income-category').find(':selected').text();
+  }
+
+  if (arguments[5] === undefined) {
+    arguments[5] = $('#income-account').find(':selected').text();
+  }
+
 
   dbIncomes.put({
     _id: new Date().toJSON(),

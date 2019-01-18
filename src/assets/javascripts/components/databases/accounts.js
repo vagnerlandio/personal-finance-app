@@ -6,9 +6,17 @@ function cleanAccountForm() {
 
 // Create
 function createAccount(description, openingBalance, category) {
-  if (arguments[0] === undefined) $('#account-description').val();
-  if (arguments[1] === undefined) $('#account-balance').val();
-  if (arguments[2] === undefined) $('#account-category').find(':selected').text();
+  if (arguments[0] === undefined) {
+    arguments[0] = $('#account-description').val();
+  }
+
+  if (arguments[1] === undefined) {
+    arguments[1] = $('#account-balance').val();
+  }
+
+  if (arguments[2] === undefined) {
+    arguments[2] = $('#account-category').find(':selected').text();
+  }
 
   dbAccounts.put({
     _id: new Date().toJSON(),

@@ -22,12 +22,29 @@ function loadExpenseCategories() {
 
 // Create
 function createExpense(description, amount, dueDate, status, category, account) {
-  if (arguments[0] === undefined) $('#expense-description').val();
-  if (arguments[1] === undefined) $('#expense-amount').val();
-  if (arguments[2] === undefined) $('#expense-due-date').val();
-  if (arguments[3] === undefined) $('#expense-status').is(':checked');
-  if (arguments[4] === undefined) $('#expense-category').find(':selected').text();
-  if (arguments[5] === undefined) $('#expense-account').find(':selected').text();
+  if (arguments[0] === undefined) {
+    arguments[0] = $('#expense-description').val();
+  }
+
+  if (arguments[1] === undefined) {
+    arguments[1] = $('#expense-amount').val();
+  }
+
+  if (arguments[2] === undefined) {
+    arguments[2] = $('#expense-due-date').val();
+  }
+
+  if (arguments[3] === undefined) {
+    arguments[3] = $('#expense-status').is(':checked');
+  }
+
+  if (arguments[4] === undefined) {
+    arguments[4] = $('#expense-category').find(':selected').text();
+  }
+
+  if (arguments[5] === undefined) {
+    arguments[5] = $('#expense-account').find(':selected').text();
+  }
 
   dbExpenses.put({
     _id: new Date().toJSON(),
@@ -38,7 +55,8 @@ function createExpense(description, amount, dueDate, status, category, account) 
     category: arguments[4],
     account: arguments[5],
   }).then(function (response) {
-    cleanExpenseForm();
+    // cleanExpenseForm();
+    console.log(response)
     M.toast({ html: 'Expense created with successus!' });
   }).catch(function (err) {
     console.log(err);
