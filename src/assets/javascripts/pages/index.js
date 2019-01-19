@@ -8,9 +8,17 @@ $(() => {
   $('.modal').modal();
   $('.datepicker').datepicker();
   updateDate();
+  updateBalance();
   loadAccountsIn('#income-account');
   loadAccountsIn('#expense-account');
 });
+
+let currentBalances = {
+  total: 0,
+  incomes: 0,
+  expenses: 0,
+  foreseen: 0,
+};
 
 function selectCategory() {
   var accounts = JSON.parse(localStorage.getItem('accounts'));
@@ -27,7 +35,7 @@ var myChart = new Chart(ctx, {
     labels: ['Balance'],
     datasets: [{
       label: 'Income',
-      data: [10000],
+      data: [currentBalances.incomes],
       backgroundColor: [
         'rgba(31, 192, 143, 0.2)',
       ],
@@ -38,7 +46,7 @@ var myChart = new Chart(ctx, {
     },
     {
       label: 'Expense',
-      data: [5000],
+      data: [currentBalances.expenses],
       backgroundColor: [
         'rgba(244, 85, 49, 0.2)',
       ],
@@ -49,7 +57,7 @@ var myChart = new Chart(ctx, {
     },
     {
       label: 'Foreseen',
-      data: [5000],
+      data: [currentBalances.foreseen],
       backgroundColor: [
         'rgba(12, 146, 210, 0.2)',
       ],
@@ -69,3 +77,10 @@ var myChart = new Chart(ctx, {
     },
   },
 });
+
+function updateBalance() {
+  $('#total-balance-value').text('$' + currentBalances.total.toFixed(2));
+  $('span#income').text('$' + currentBalances.incomes.toFixed(2));
+  $('span#expense').text('$' + currentBalances.expenses.toFixed(2));
+  $('span#foreseen').text('$' + currentBalances.foreseen.toFixed(2));
+}
