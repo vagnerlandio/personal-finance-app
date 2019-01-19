@@ -5,16 +5,19 @@ $(() => {
   });
   updateDate();
   loadExpenses();
+  loadIncomes()
   $('.tabs').tabs({swipeable: true});
   $('#prev-month').on('click', function(event) {
     event.preventDefault();
     $('.collection-item').remove();
     loadExpenses();
+    loadIncomes()
   });
   $('#next-month').on('click', function(event) {
     event.preventDefault();
     $('.collection-item').remove();
     loadExpenses();
+    loadIncomes()
   });
 });
 
@@ -25,7 +28,7 @@ function loadExpenses() {
     $.each(result.rows, function(index, el) {
       if (el.doc.description !== undefined) {
         if ((monthsAbbr[currentMonth] === el.doc.due_date.slice(0, 3)) & (el.doc.due_date.slice(-4) == currentYear)) {
-          createTransactionCollectionItem(el.doc.description, el.doc.amount, el.doc.status);
+          createTransactionCollectionItem(el.doc.description, el.doc.amount, el.doc.status, 'expenses');
         }
       }
     });
@@ -34,7 +37,23 @@ function loadExpenses() {
   });
 }
 
-function createTransactionCollectionItem(description, amount, status) {
+function loadIncomes() {
+  dbIncomes.allDocs({
+    include_docs: true,
+  }).then(function (result) {
+    $.each(result.rows, function(index, el) {
+      if (el.doc.description !== undefined) {
+        if ((monthsAbbr[currentMonth] === el.doc.due_date.slice(0, 3)) & (el.doc.due_date.slice(-4) == currentYear)) {
+          createTransactionCollectionItem(el.doc.description, el.doc.amount, el.doc.status, 'incomes');
+        }
+      }
+    });
+  }).catch(function (err) {
+    console.log(err);
+  });
+}
+
+function createTransactionCollectionItem(description, amount, status, transactionType) {
   let statusIcon;
 
   if (status) {
@@ -49,5 +68,5 @@ function createTransactionCollectionItem(description, amount, status) {
     <p>Amount: <span class="right">${amount}</span></p>
   </li>`;
 
-  $('#expenses-page > ul').append(elem);
+  $('#' + transactionType + '-page > ul').append(elem);
 }
