@@ -5,19 +5,22 @@ $(() => {
   });
   updateDate();
   loadExpenses();
-  loadIncomes()
+  loadIncomes();
+  loadTransfers();
   $('.tabs').tabs({swipeable: true});
   $('#prev-month').on('click', function(event) {
     event.preventDefault();
     $('.collection-item').remove();
     loadExpenses();
-    loadIncomes()
+    loadIncomes();
+    loadTransfers();
   });
   $('#next-month').on('click', function(event) {
     event.preventDefault();
     $('.collection-item').remove();
     loadExpenses();
-    loadIncomes()
+    loadIncomes();
+    loadTransfers();
   });
 });
 
@@ -45,6 +48,22 @@ function loadIncomes() {
       if (el.doc.description !== undefined) {
         if ((monthsAbbr[currentMonth] === el.doc.due_date.slice(0, 3)) & (el.doc.due_date.slice(-4) == currentYear)) {
           createTransactionCollectionItem(el.doc.description, el.doc.amount, el.doc.status, 'incomes');
+        }
+      }
+    });
+  }).catch(function (err) {
+    console.log(err);
+  });
+}
+
+function loadTransfers() {
+  dbTransfers.allDocs({
+    include_docs: true,
+  }).then(function (result) {
+    $.each(result.rows, function(index, el) {
+      if (el.doc.description !== undefined) {
+        if ((monthsAbbr[currentMonth] === el.doc.due_date.slice(0, 3)) & (el.doc.due_date.slice(-4) == currentYear)) {
+          createTransactionCollectionItem(el.doc.description, el.doc.amount, el.doc.status, 'transfers');
         }
       }
     });
